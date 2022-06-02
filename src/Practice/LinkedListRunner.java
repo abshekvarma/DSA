@@ -39,13 +39,30 @@ class LinkedList {
     }
 
     public void insertAt(int index, int data) {
-        Node nodeTobeInserted = new Node(data);
-        Node node = head;
-        for (int i = 0; i < index - 1; i++) {
-            node = node.getNextNode();
+        if(index==0){
+            insertAtFirst(data);
+            return;
         }
-        nodeTobeInserted.setNextNode(node.getNextNode());
-        node.setNextNode(nodeTobeInserted);
+        Node nodeTobeInserted = new Node(data);
+        Node node = null;
+        Node previous = null;
+        for (int i = 1; i <=index; i++) {
+            node = head.getNextNode();
+            if(previous==null){
+                previous = new Node(head.getData());
+            }else{
+                previous.setNextNode(head.getNextNode());
+            }
+        }
+        nodeTobeInserted.setNextNode(node);
+        previous.setNextNode(nodeTobeInserted);
+        head=previous;
+    }
+
+    public void insertAtFirst(int data){
+        Node newNode = new Node(data);
+        newNode.setNextNode(head);
+        head=newNode;
     }
 
     public void deleteAt(int index) {
@@ -54,6 +71,7 @@ class LinkedList {
             node = node.getNextNode();
         }
         node.setNextNode(node.getNextNode().getNextNode());
+
     }
 
     public void display() {
@@ -61,10 +79,10 @@ class LinkedList {
             System.out.println();
             Node currentNode = head;
             while (currentNode.getNextNode() != null) {
-                System.out.print(currentNode.getData());
+                System.out.println(currentNode.getData());
                 currentNode = currentNode.getNextNode();
             }
-            System.out.print(currentNode.getData());
+            System.out.println(currentNode.getData());
         }
     }
 
@@ -73,10 +91,10 @@ class LinkedList {
             System.out.println();
             Node currentNode = node;
             while (currentNode.getNextNode() != null) {
-                System.out.print(currentNode.getData());
+                System.out.println(currentNode.getData());
                 currentNode = currentNode.getNextNode();
             }
-            System.out.print(currentNode.getData());
+            System.out.println(currentNode.getData());
         }
     }
 
@@ -105,7 +123,8 @@ public class LinkedListRunner {
         list.insert(4);
         list.insert(5);
         list.insert(6);
+        list.insertAt(3,86);
         list.display();
-        list.customDisplay(list.reverse());
+        //list.customDisplay(list.reverse());
     }
 }
