@@ -27,7 +27,7 @@ class MyStack {
 
     public int pop() {
         if(q1.isEmpty()){
-            System.out.println("underFlow");
+            System.out.println("underflow");
             return -1;
         }
         int data = q1.peek();
@@ -55,7 +55,7 @@ public class StacksUsingQueues {
     stack.push(2);
     stack.push(3);
     stack.push(4);
-    stack.pop();
     System.out.println(stack.top());
+    System.out.println(stack.empty());
     }
 }
