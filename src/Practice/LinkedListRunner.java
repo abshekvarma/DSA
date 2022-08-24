@@ -1,29 +1,37 @@
 package Practice;
 
+import java.util.Stack;
+
 class Node {
-    private int data;
-    private Node nextNode;
+    public int data;
+    public Node next;
 
     public Node(int data) {
         this.data = data;
     }
 
+    public Node() {}
+
     public int getData() {
         return data;
     }
 
-    public Node getNextNode() {
-        return nextNode;
+    public void setData(int data) {
+        this.data = data;
     }
 
-    public void setNextNode(Node node) {
-        this.nextNode = node;
+    public Node getNext() {
+        return next;
+    }
+
+    public void setNext(Node node) {
+        this.next = node;
     }
 }
 
 class LinkedList {
 
-    private Node head;
+    public Node head;
 
     public void insert(int data) {
         Node newNode = new Node(data);
@@ -31,10 +39,10 @@ class LinkedList {
             head = newNode;
         } else {
             Node currentNode = head;
-            while (currentNode.getNextNode() != null) {
-                currentNode = currentNode.getNextNode();
+            while (currentNode.getNext() != null) {
+                currentNode = currentNode.getNext();
             }
-            currentNode.setNextNode(newNode);
+            currentNode.setNext(newNode);
         }
     }
 
@@ -47,30 +55,30 @@ class LinkedList {
         Node node = null;
         Node previous = null;
         for (int i = 1; i <=index; i++) {
-            node = head.getNextNode();
+            node = head.getNext();
             if(previous==null){
                 previous = new Node(head.getData());
             }else{
-                previous.setNextNode(head.getNextNode());
+                previous.setNext(head.getNext());
             }
         }
-        nodeTobeInserted.setNextNode(node);
-        previous.setNextNode(nodeTobeInserted);
+        nodeTobeInserted.setNext(node);
+        previous.setNext(nodeTobeInserted);
         head=previous;
     }
 
     public void insertAtFirst(int data){
         Node newNode = new Node(data);
-        newNode.setNextNode(head);
+        newNode.setNext(head);
         head=newNode;
     }
 
     public void deleteAt(int index) {
         Node node = head;
         for (int i = 0; i < index - 1; i++) {
-            node = node.getNextNode();
+            node = node.getNext();
         }
-        node.setNextNode(node.getNextNode().getNextNode());
+        node.setNext(node.getNext().getNext());
 
     }
 
@@ -78,11 +86,11 @@ class LinkedList {
         if (head != null) {
             System.out.println();
             Node currentNode = head;
-            while (currentNode.getNextNode() != null) {
-                System.out.println(currentNode.getData());
-                currentNode = currentNode.getNextNode();
+            while (currentNode.getNext() != null) {
+                System.out.print(currentNode.getData());
+                currentNode = currentNode.getNext();
             }
-            System.out.println(currentNode.getData());
+            System.out.print(currentNode.getData());
         }
     }
 
@@ -90,25 +98,29 @@ class LinkedList {
         if (head != null) {
             System.out.println();
             Node currentNode = node;
-            while (currentNode.getNextNode() != null) {
-                System.out.println(currentNode.getData());
-                currentNode = currentNode.getNextNode();
+            while (currentNode.getNext() != null) {
+                System.out.print(currentNode.getData());
+                currentNode = currentNode.getNext();
             }
-            System.out.println(currentNode.getData());
+            System.out.print(currentNode.getData());
         }
     }
 
     public Node reverse() {
-        Node previous = null;
-        Node current = head;
-        Node next;
-        while (current != null) {
-            next = current.getNextNode();
-            current.setNextNode(previous);
-            previous = current;
-            current = next;
+        if(head==null || head.next==null){
+            return head;
         }
-        return previous;
+        Node prev = head;
+        Node current = head.next;
+        while(current!=null){
+            Node next = current.next;
+            current.next=prev;
+            prev=current;
+            current=next;
+        }
+        head.next=null;
+        head = prev;
+        return head;
     }
 
 }
@@ -121,10 +133,7 @@ public class LinkedListRunner {
         list.insert(2);
         list.insert(3);
         list.insert(4);
-        list.insert(5);
-        list.insert(6);
-        list.insertAt(3,86);
         list.display();
-        //list.customDisplay(list.reverse());
+        list.customDisplay(list.reverse());
     }
 }

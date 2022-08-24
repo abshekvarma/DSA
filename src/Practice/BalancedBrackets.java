@@ -1,5 +1,6 @@
 package Practice;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -10,7 +11,7 @@ class BalancedBrackets {
         map.put('{','}');
         map.put('[',']');
         map.put('(',')');
-        String s = "{{{()}}]";
+        String s = "()[]{}";
         int last = s.length()-1; boolean flagBalanced = true;
         if(s.length()%2!=0){
             flagBalanced = false;
