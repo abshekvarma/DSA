@@ -5,8 +5,8 @@ import java.util.Queue;
 
 public class Graph {
 
-    private int V;
-    private LinkedList<Integer> adj[];
+    private final int V;
+    private final LinkedList[] adj;
     public Graph(int v){
         V=v;
         adj= new LinkedList[v];
@@ -20,15 +20,15 @@ public class Graph {
     }
 
     public void bfs(int v){
-        boolean visited[] = new boolean[V];
+        boolean[] visited = new boolean[V];
         visited[v]=true;
         Queue<Integer> q = new LinkedList<>();
         q.add(v);
         while(!q.isEmpty()){
             int data = q.poll();
             System.out.print(data+"->");
-            for(int i=0;i<adj[data].size();i++){
-                int node = adj[data].get(i);
+            LinkedList<Integer> list = adj[data];
+            for(int node : list){
                 if(!visited[node]){
                     visited[node] = true;
                     q.add(node);
