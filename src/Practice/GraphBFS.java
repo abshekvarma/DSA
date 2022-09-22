@@ -3,11 +3,11 @@ package Practice;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Graph {
+public class GraphBFS {
 
     private final int V;
     private final LinkedList[] adj;
-    public Graph(int v){
+    public GraphBFS(int v){
         V=v;
         adj= new LinkedList[v];
         for(int i=0;i<v;i++){
@@ -39,20 +39,20 @@ public class Graph {
 
     public static void main(String[] args) {
         int v = 6;
-        Graph graph = new Graph(v);
-        graph.addEdge(0, 1);
-        graph.addEdge(0, 3);
-        graph.addEdge(0, 4);
-        graph.addEdge(4, 5);
-        graph.addEdge(3, 5);
-        graph.addEdge(1, 2);
-        graph.addEdge(1, 0);
-        graph.addEdge(2, 1);
-        graph.addEdge(4, 1);
-        graph.addEdge(3, 1);
-        graph.addEdge(5, 4);
-        graph.addEdge(5, 3);
-        graph.bfs(0);
+        GraphBFS graphBFS = new GraphBFS(v);
+        graphBFS.addEdge(0, 1);
+        graphBFS.addEdge(0, 3);
+        graphBFS.addEdge(0, 4);
+        graphBFS.addEdge(4, 5);
+        graphBFS.addEdge(3, 5);
+        graphBFS.addEdge(1, 2);
+        graphBFS.addEdge(1, 0);
+        graphBFS.addEdge(2, 1);
+        graphBFS.addEdge(4, 1);
+        graphBFS.addEdge(3, 1);
+        graphBFS.addEdge(5, 4);
+        graphBFS.addEdge(5, 3);
+        graphBFS.bfs(0);
 
     }
 }
